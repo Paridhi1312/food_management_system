@@ -1,0 +1,17 @@
+{
+  "name": "food-management-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Food Management System with MongoDB Atlas",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --use-system-ca server.js",
+    "dev": "node --use-system-ca --watch server.js",
+    "seed": "node --use-system-ca scripts/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "mongoose": "^8.24.5"
+  }
+}
