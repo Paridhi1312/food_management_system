@@ -12,6 +12,8 @@
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
     "express": "^4.22.3",
-    "mongoose": "^8.24.5"
+    "mongoose": "^8.24.5",
+    "neo4j-driver": "^6.2.0",
+    "sqlite3": "^6.0.1"
   }
 }

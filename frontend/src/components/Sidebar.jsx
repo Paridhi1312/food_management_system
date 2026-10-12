@@ -12,6 +12,7 @@ const Sidebar = ({ activeTab, setActiveTab, atlasStatus }) => {
     { id: 'beneficiaries', label: 'Beneficiaries & Feedback', icon: '⭐' },
     { id: 'database', label: 'Database Operations', icon: '⚡' },
     { id: 'schema', label: 'Graph Schema', icon: '🕸️' },
+    { id: 'neo4j', label: 'Neo4j Cypher CRUD', icon: '🔗' },
   ];
 
   return (

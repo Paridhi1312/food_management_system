@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { connectDB, getStatus } = require('./config/db');
+const { connectNeo4j, getNeo4jStatus } = require('./config/neo4j');
 
 // Load environment variables
 dotenv.config();
@@ -30,9 +31,11 @@ app.get('/api/health', (req, res) => {
 // Mount Routes
 const apiRoutes = require('./routes/apiRoutes');
 const advancedRoutes = require('./routes/advancedRoutes');
+const neo4jRoutes = require('./routes/neo4jRoutes');
 
 app.use('/api', apiRoutes);
 app.use('/api', advancedRoutes);
+app.use('/api', neo4jRoutes);
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {
@@ -43,13 +46,22 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Server & Connect to DB
+// Start Server & Connect to DBs
 const startServer = async () => {
-  // Connect to Atlas
+  // Connect to MongoDB Atlas
   await connectDB();
+
+  // Connect to Neo4j (optional – logs warning if not configured)
+  await connectNeo4j();
 
   app.listen(PORT, () => {
     console.log(`🚀 Food Management System Server running on http://localhost:${PORT}`);
+    const neo4jStatus = getNeo4jStatus();
+    if (neo4jStatus.isConnected) {
+      console.log(`🔗 Neo4j Connected: ${neo4jStatus.address}`);
+    } else {
+      console.log('ℹ️  Neo4j: not configured (add NEO4J_URI / NEO4J_USER / NEO4J_PASSWORD to backend/.env)');
+    }
   });
 };
 

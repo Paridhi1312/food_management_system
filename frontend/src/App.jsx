@@ -11,6 +11,7 @@ import DeliveriesPage from './pages/DeliveriesPage';
 import BeneficiariesPage from './pages/BeneficiariesPage';
 import DatabaseOperationsPage from './pages/DatabaseOperationsPage';
 import GraphSchemaPage from './pages/GraphSchemaPage';
+import Neo4jPage from './pages/Neo4jPage';
 import { api } from './services/api';
 import './styles/App.css';
 
@@ -59,6 +60,8 @@ function App() {
         return { title: 'Database Operations (Lab Demonstration)', desc: 'Live MongoDB CRUD, JSON queries, aggregation pipelines, and index inspector.' };
       case 'schema':
         return { title: 'Relational Graph Schema', desc: 'Visual representation of document references and entity relationships.' };
+      case 'neo4j':
+        return { title: 'Neo4j Graph Database — Cypher CRUD', desc: 'Create, Read, Update & Delete nodes and relationships using Cypher queries on a live Neo4j AuraDB graph.' };
       default:
         return { title: 'Food Management System', desc: 'Connected to MongoDB Atlas' };
     }
@@ -104,6 +107,7 @@ function App() {
           {activeTab === 'beneficiaries' && <BeneficiariesPage />}
           {activeTab === 'database' && <DatabaseOperationsPage />}
           {activeTab === 'schema' && <GraphSchemaPage />}
+          {activeTab === 'neo4j' && <Neo4jPage />}
         </main>
       </div>
     </div>
